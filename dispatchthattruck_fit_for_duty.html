@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DISPATCH THAT TRUCK — Fit for Duty</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e8e8e8; min-height: 100vh; padding: 24px; }
+  .header { border-bottom: 2px solid #ff3b30; padding-bottom: 16px; margin-bottom: 24px; }
+  .header h1 { font-size: 28px; letter-spacing: 2px; }
+  .header .sub { color: #888; font-size: 13px; margin-top: 4px; }
+  .law-ref { background: #1a1a1a; border-left: 3px solid #ff3b30; padding: 12px 16px; margin: 16px 0; font-size: 12px; color: #aaa; line-height: 1.6; }
+  .law-ref strong { color: #ff3b30; }
+  .section { margin-bottom: 32px; }
+  .section h2 { font-size: 16px; text-transform: uppercase; letter-spacing: 1.5px; color: #ff3b30; margin-bottom: 12px; }
+  .check-item { background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .check-item label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+  .check-item input[type="checkbox"] { width: 22px; height: 22px; margin-top: 2px; accent-color: #ff3b30; flex-shrink: 0; }
+  .check-item .q { font-size: 15px; font-weight: 500; }
+  .check-item .detail { font-size: 12px; color: #777; margin-top: 6px; }
+  .btn { width: 100%; padding: 18px; background: #ff3b30; color: #fff; border: none; border-radius: 8px; font-size: 17px; font-weight: 700; letter-spacing: 1px; cursor: pointer; margin-top: 24px; }
+  .btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+  .warn { background: #2a1515; border: 1px solid #ff3b30; border-radius: 8px; padding: 14px; font-size: 13px; color: #ff8a80; margin-top: 16px; line-height: 1.5; }
+  .sig-box { border: 1px dashed #444; border-radius: 8px; padding: 20px; text-align: center; color: #555; font-size: 13px; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>DISPATCH THAT TRUCK</h1>
+  <div class="sub">DRIVER SCREEN — FIT FOR DUTY DECLARATION</div>
+  <div class="sub">Shift: ___________ &nbsp; Date: ___________ &nbsp; Vehicle: ___________</div>
+</div>
+<div class="law-ref">
+  <strong>HVNL s 26D</strong> — Duty of executive of legal entity: must exercise due diligence to ensure the entity complies with safety duties.<br>
+  <strong>HVNL s 26E</strong> — Prohibited requests and contracts: must not ask, direct, or require a person to do something that would breach a safety duty.<br>
+  <strong>New Unfit to Drive duty (commenced 1 Aug 2026)</strong> — A driver must not drive a heavy vehicle if unfit to drive. An operator must not cause or permit a driver to drive if unfit. "Unfit to drive" includes impairment by fatigue, illness, injury, or any other condition affecting safe operation.
+</div>
+<div class="section">
+  <h2>1. Fatigue &amp; Hours</h2>
+  <div class="check-item"><label><input type="checkbox" id="c1"><div><div class="q">I have had adequate rest before this shift</div><div class="detail">Minimum rest requirements apply under the national regulations. Record your last rest break time: ______ hrs ago</div></div></label></div>
+  <div class="check-item"><label><input type="checkbox" id="c2"><div><div class="q">I am within my allowable work and rest hours for today</div><div class="detail">Standard hours under s 249 (as amended). Fatigue alternative compliance hours only apply if separately accredited.</div></div></label></div>
+  <div class="check-item"><label><input type="checkbox" id="c3"><div><div class="q">I have no accumulated fatigue from previous shifts or night work</div><div class="detail">Night work time and consecutive work days increase fatigue risk. Courts may consider signs of fatigue under s 226.</div></div></label></div>
+</div>
+<div class="section">
+  <h2>2. Medical &amp; Physical Condition</h2>
+  <div class="check-item"><label><input type="checkbox" id="c4"><div><div class="q">I am not impaired by illness, injury, or medication</div><div class="detail">Impairment includes anything affecting reaction time, judgement, vision, or physical control of the vehicle.</div></div></label></div>
+  <div class="check-item"><label><input type="checkbox" id="c5"><div><div class="q">I am not under the influence of alcohol or drugs</div><div class="detail">Zero tolerance. Random roadside testing applies. Positive result = immediate offence and licence action.</div></div></label></div>
+  <div class="check-item"><label><input type="checkbox" id="c6"><div><div class="q">I have no signs of being unfit to drive right now</div><div class="detail">Signs include drowsiness, blurred vision, slowed reactions, headaches, or feeling unwell. If any sign is present, you must not drive.</div></div></label></div>
+</div>
+<div class="section">
+  <h2>3. Vehicle &amp; Load Readiness</h2>
+  <div class="check-item"><label><input type="checkbox" id="c7"><div><div class="q">Pre-start inspection completed — tyres, coupling, lights, brakes checked</div><div class="detail">Photos captured for tyres and coupling. Defects logged before departure.</div></div></label></div>
+  <div class="check-item"><label><input type="checkbox" id="c8"><div><div class="q">Load is secured and within mass and dimension limits</div><div class="detail">GML now aligns with former CML. Max length 20m for eligible combinations only. Axle weights verified.</div></div></label></div>
+</div>
+<div class="section">
+  <h2>4. Chain of Responsibility Awareness</h2>
+  <div class="check-item"><label><input type="checkbox" id="c9"><div><div class="q">I understand I share safety responsibility with the operator, scheduler, and loader</div><div class="detail">Every party in the chain can be held liable. I will not accept a load, schedule, or instruction that breaches my duties.</div></div></label></div>
+  <div class="check-item"><label><input type="checkbox" id="c10"><div><div class="q">I know how to report a safety concern without penalty</div><div class="detail">s 26E prohibits contracts or requests that would breach safety duties. Report via the app or directly to NHVR.</div></div></label></div>
+</div>
+<div class="warn"><strong>IF ANY BOX CANNOT BE TICKED — DO NOT DRIVE.</strong><br>Declaring fit when unfit is an offence under the HVNL. The operator who causes or permits it is separately liable. This declaration is a legal record.</div>
+<div class="sig-box">DRIVER SIGNATURE / DIGITAL ACKNOWLEDGEMENT<br>Name: _______________ &nbsp; Time: _______________</div>
+<button class="btn" id="submitBtn" disabled onclick="submitDeclaration()">I AM FIT TO DRIVE — PROCEED TO VEHICLE SELECTION</button>
+<script>
+  const boxes = document.querySelectorAll('input[type="checkbox"]);
+  const btn = document.getElementById('submitBtn);
+  boxes.forEach(b => b.addEventListener('change', () => { btn.disabled = !Array.from(boxes).every(x => x.checked); }));
+  function submitDeclaration() { alert('Fit-for-duty declaration recorded. Moving to vehicle/trailer selection.'); }
+</script>
+</body>
+</html>
