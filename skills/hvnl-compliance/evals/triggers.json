@@ -1,0 +1,9 @@
+{
+  "skill": "hvnl-compliance",
+  "test_cases": [
+    {"input": "Build the fit-for-duty screen for the haul app", "should_trigger": true},
+    {"input": "Map HVNL s26D to a driver flow gate", "should_trigger": true},
+    {"input": "Pre-empt an inspector question on fatigue hours", "should_trigger": true},
+    {"input": "What's the weather in Sydney?", "should_trigger": false}
+  ]
+}

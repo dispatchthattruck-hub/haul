@@ -1,0 +1,20 @@
+{
+  "skill": "hvnl-compliance",
+  "test_cases": [
+    {
+      "name": "fit_for_duty_screen",
+      "input": "Build the fit-for-duty page with hard-block and HVNL citations",
+      "assertions": ["Creates HTML with 10 checkboxes", "Hard-blocks until all ticked", "Cites unfit-to-drive duty and false declaration offence", "Includes driver/date/vehicle fields"]
+    },
+    {
+      "name": "map_duty_to_screen",
+      "input": "Map the executive due diligence duty to an app gate",
+      "assertions": ["Identifies s26D", "States who it bites", "Outputs a pre-empt pattern or second-layer screen"]
+    },
+    {
+      "name": "preempt_inspector",
+      "input": "Driver went out with low hours — what evidence protects us?",
+      "assertions": ["States exact evidence required", "Cites relevant fatigue/work diary section", "Describes the gate that forces the evidence"]
+    }
+  ]
+}
