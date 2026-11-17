@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAUL — Freight Chaos</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0a;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { text-align: center; font-size: 3.5rem; margin: 20px 0; text-shadow: 0 0 20px #00ff88; animation: glitch 2s infinite; }
+  @keyframes glitch {
+    0%, 100% { text-shadow: 0 0 20px #00ff88; }
+    50% { text-shadow: 3px 0 #ff00ff, -3px 0 #00ffff; }
+  }
+  .screen { display: none; background: #111; border: 2px solid #00ff88; padding: 30px; border-radius: 10px; margin: 20px 0; }
+  .screen.active { display: block; }
+  button, .btn {
+    background: #00ff88; color: #000; border: none; padding: 15px 30px;
+    font-size: 1.2rem; font-weight: bold; cursor: pointer; margin: 10px;
+    border-radius: 5px; transition: all 0.2s;
+  }
+  button:hover { background: #ff00ff; color: #fff; transform: scale(1.05); }
+  .truck-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+  .truck-card {
+    background: #1a1a1a; border: 2px solid #333; padding: 20px; text-align: center;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .truck-card:hover, .truck-card.selected { border-color: #00ff88; box-shadow: 0 0 20px #00ff88; }
+  .checklist { list-style: none; }
+  .checklist li {
+    background: #1a1a1a; margin: 8px 0; padding: 12px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .fail { background: #330000 !important; color: #ff4444; animation: suck 0.5s forwards; }
+  @keyframes suck {
+    to { transform: scale(0); opacity: 0; }
+  }
+  .runsheet { background: #000; padding: 20px; font-size: 1.1rem; line-height: 1.8; }
+  .status { font-size: 1.4rem; text-align: center; margin: 20px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>HAUL</h1>
+  <p style="text-align:center; font-size:1.2rem; color:#aaa;">Don't hate the game, hate the player. You've just been coached.</p>
+
+  <!-- GREET -->
+  <div id="greet" class="screen active">
+    <div class="status">DRIVER ONLINE</div>
+    <p style="font-size:1.4rem; text-align:center; margin:30px 0;">You are not late. The load is early.</p>
+    <button onclick="next('vehicle')">START SHIFT</button>
+  </div>
+
+  <!-- VEHICLE -->
+  <div id="vehicle" class="screen">
+    <h2>SELECT YOUR WEAPON</h2>
+    <div class="truck-grid">
+      <div class="truck-card" onclick="selectTruck(this, 'BIGCAB')">
+        <h3>BIGCAB</h3>
+        <p>Kenworth T610<br>450hp<br>Currently feral</p>
+      </div>
+      <div class="truck-card" onclick="selectTruck(this, 'REDLINE')">
+        <h3>REDLINE</h3>
+        <p>Volvo FH16<br>750hp<br>Wants to die gloriously</p>
+      </div>
+      <div class="truck-card" onclick="selectTruck(this, 'GHOST')">
+        <h3>GHOST</h3>
+        <p>Scania S500<br>Silent. Hungry.</p>
+      </div>
+    </div>
+    <button id="confirmTruck" disabled onclick="next('prestart')">LOCK IT IN</button>
+  </div>
+
+  <!-- PRESTART -->
+  <div id="prestart" class="screen">
+    <h2>PRE-START — FAIL HARD OR DON'T BOTHER</h2>
+    <ul class="checklist" id="checklist">
+      <li>Tyres <button onclick="pass(this)">PASS</button> <button onclick="fail(this)">FAIL</button></li>
+      <li>Lights <button onclick="pass(this)">PASS</button> <button onclick="fail(this)">FAIL</button></li>
+      <li>Coupling <button onclick="pass(this)">PASS</button> <button onclick="fail(this)">FAIL</button></li>
+      <li>Fluids <button onclick="pass(this)">PASS</button> <button onclick="fail(this)">FAIL</button></li>
+      <li>Brakes <button onclick="pass(this)">PASS</button> <button onclick="fail(this)">FAIL</button></li>
+    </ul>
+    <button id="goRun" disabled onclick="next('runsheet')">CLEAR FOR WAR</button>
+  </div>
+
+  <!-- RUNSHEET -->
+  <div id="runsheet" class="screen">
+    <h2>RUN SHEET</h2>
+    <div class="runsheet" id="sheet">
+      Truck: <span id="truckName">—</span><br>
+      Driver: YOU<br>
+      Status: LOADED AND UNSTABLE<br><br>
+      <strong>DROPS:</strong><br>
+      1. Port Botany — 22t containers — 04:30<br>
+      2. Alexandria — 8 pallets of "not your business" — 07:15<br>
+      3. Eastern Creek — empty run, smoke break mandatory — 09:00<br>
+    </div>
+    <button onclick="location.reload()">END SHIFT (CRY)</button>
+  </div>
+</div>
+
+<script>
+let selectedTruck = null;
+let passed = 0;
+
+function next(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'runsheet') document.getElementById('truckName').textContent = selectedTruck;
+}
+
+function selectTruck(el, name) {
+  document.querySelectorAll('.truck-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTruck = name;
+  document.getElementById('confirmTruck').disabled = false;
+}
+
+function pass(btn) {
+  const li = btn.parentElement;
+  li.style.background = '#003300';
+  li.querySelectorAll('button').forEach(b => b.disabled = true);
+  passed++;
+  if (passed >= 5) document.getElementById('goRun').disabled = false;
+}
+
+function fail(btn) {
+  const li = btn.parentElement;
+  li.classList.add('fail');
+  setTimeout(() => li.remove(), 500);
+}
+</script>
+</body>
+</html>
